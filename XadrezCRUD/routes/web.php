@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Route::get('/usuarios', 'Usuarios@index');
 
+Route::get('/usuarios_form/{user}','Usuarios@pegarForm');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -35,4 +35,28 @@ class Usuarios extends Controller
             return view('sem_permissao');
         }
     }
+
+    public function pegarForm(User $user) {
+        if(Auth::user()->tem_permissao) {
+            $data = [
+                'user' => $user
+            ];
+            return view('Usuarios.usuarios_form', $data);
+        }
+        else {
+            return view('sem_permissao');
+        }
+    }
+
+    public function enviarForm(Request $request) {
+        if(Auth::user()->tem_permissao) {
+            $data = [
+                'users' => User::find($request->user_id)
+            ];
+            return view('Usuarios.usuarios', $data);
+        }
+        else {
+            return view('sem_permissao');
+        }
+    }
 }
