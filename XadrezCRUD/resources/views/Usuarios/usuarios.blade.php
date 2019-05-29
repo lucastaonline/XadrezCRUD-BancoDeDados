@@ -14,10 +14,10 @@
                         #
                     </th>
                     <th>
-                        E-mail
+                        Nome
                     </th>
                     <th>
-                        Data de criação
+                        E-mail
                     </th>
                     <th>
                         Tem permissão?
@@ -33,10 +33,10 @@
                             {{ $user->id }}
                         </td>
                         <td>
-                            {{ $user->email }}
+                            {{ $user->name }}
                         </td>
                         <td>
-                            {{ $user->created_at }}
+                            {{ $user->email }}
                         </td>
                         <td>
                             @if($user->tem_permissao)
@@ -46,7 +46,7 @@
                             @endif
                         </td>
                         <td style="text-align: right;">
-                            <a class="btn btn-primary" style="color: white"> Editar </a>
+                            <a class="btn btn-primary" href="usuarios_form/{{ $user->id }}" style="color: white"> Editar </a>
                         </td>
                     </tr>
                 @endforeach
