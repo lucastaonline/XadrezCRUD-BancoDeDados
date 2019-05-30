@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::get('/usuarios', 'Usuarios@index');
 
 Route::get('/usuarios_form/{user}','Usuarios@pegarForm');
+Route::post('/usuarios_form/{user}','Usuarios@enviarForm');
 
 Auth::routes();
 
