@@ -8,6 +8,8 @@ class Partida extends Model
 {
     protected $table = 'Partida';
 
+    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *

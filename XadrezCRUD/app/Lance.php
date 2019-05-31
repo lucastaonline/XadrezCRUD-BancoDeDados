@@ -8,6 +8,8 @@ class Lance extends Model
 {
     protected $table = 'Lance';
 
+    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *

@@ -8,6 +8,8 @@ class Controle_de_tempo extends Model
 {
     protected $table = 'Controle_de_tempo';
 
+    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *

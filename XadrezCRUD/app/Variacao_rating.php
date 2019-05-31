@@ -8,6 +8,8 @@ class Variacao_rating extends Model
 {
     protected $table = 'Variacao_rating';
 
+    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
