@@ -20,6 +20,11 @@ Route::get('/usuarios', 'Usuarios@index');
 Route::get('/usuarios_form/{user}','Usuarios@pegarForm');
 Route::post('/usuarios_form/{user}','Usuarios@enviarForm');
 
+Route::get('/jogadores', 'Jogadores@index');
+
+Route::get('/jogadores_form/{jogador?}','Jogadores@pegarForm');
+Route::post('/jogadores_form/{jogador?}','Jogadores@enviarForm');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

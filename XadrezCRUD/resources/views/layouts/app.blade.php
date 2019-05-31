@@ -43,7 +43,7 @@
                                 <a href="/usuarios" class="nav-link"> Usuários </a>
                             </li>
                             <li>
-                                <a class="nav-link"> Jogadores </a>
+                                <a href="/jogadores" class="nav-link"> Jogadores </a>
                             </li>
                             <li>
                                 <a class="nav-link"> Tipos de partida </a>
