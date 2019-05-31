@@ -1,5 +1,6 @@
 CREATE TABLE Jogador (
 	id INTEGER AUTO_INCREMENT,
+    nome varchar(50),
     rating INTEGER,
     PRIMARY KEY (id)
 );
