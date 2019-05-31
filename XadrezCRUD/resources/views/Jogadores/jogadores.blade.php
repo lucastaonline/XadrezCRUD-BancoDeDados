@@ -33,7 +33,7 @@
                             #
                         </th>
                         <th>
-                            Nome
+                            Nome =D
                         </th>
                         <th>
                             Rating
