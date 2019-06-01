@@ -93,7 +93,7 @@ class Jogadores extends Controller
 
             $jogador->save();
 
-            return redirect()->action('Jogadores@index')->with('status', 'As alterações foram salvas!');
+            return redirect()->action('Jogadores@index')->with('status', $novoJogador? 'O jogador foi criado com sucesso!' : 'As alterações foram salvas!');
         }
         else {
             return view('sem_permissao');

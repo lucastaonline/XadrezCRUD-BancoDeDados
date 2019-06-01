@@ -17,12 +17,12 @@
         </div>
     @endif
     <div class="container">
-        <a href="/jogadores_form" class="btn btn-primary" style="color: white; margin-bottom: 20px;"> Criar jogador </a>
-        @if(count($jogadores) == 0)
+        <a href="/tipos_de_partida_form" class="btn btn-primary" style="color: white; margin-bottom: 20px;"> Criar tipo de partida</a>
+        @if(count($tipos_de_partida) == 0)
             <div class="card">
                 <div class="card-header"> Ninguém fez bagunça aqui! </div>
                 <div class="card-body">
-                    Não temos nenhum registro de jogadores no banco. (ainda)
+                    Não temos nenhum registro de tipos de partida no banco. (ainda)
                 </div>
             </div>
         @else
@@ -36,26 +36,20 @@
                             Nome
                         </th>
                         <th>
-                            Rating
-                        </th>
-                        <th>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($jogadores as $jogador)
+                    @foreach ($tipos_de_partida as $tipo_de_partida)
                         <tr>
                             <td>
-                                {{ $jogador->id }}
+                                {{ $tipo_de_partida->id }}
                             </td>
                             <td>
-                                {{ $jogador->nome }}
-                            </td>
-                            <td>
-                                {{ $jogador->rating }}
+                                {{ $tipo_de_partida->nome }}
                             </td>
                             <td style="text-align: right;">
-                                <a class="btn btn-primary" href="jogadores_form/{{ $jogador->id }}" style="color: white"> Editar </a>
+                                <a class="btn btn-primary" href="tipos_de_partida_form/{{ $tipo_de_partida->id }}" style="color: white"> Editar </a>
                             </td>
                         </tr>
                     @endforeach

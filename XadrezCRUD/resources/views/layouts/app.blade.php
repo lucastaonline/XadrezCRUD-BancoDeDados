@@ -46,7 +46,7 @@
                                 <a href="/jogadores" class="nav-link"> Jogadores </a>
                             </li>
                             <li>
-                                <a class="nav-link"> Tipos de partida </a>
+                                <a href="/tipos_de_partida" class="nav-link"> Tipos de partida </a>
                             </li>
                             <li>
                                 <a class="nav-link"> Controles de tempo </a>

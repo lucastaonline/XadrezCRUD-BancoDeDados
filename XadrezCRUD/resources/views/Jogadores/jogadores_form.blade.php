@@ -4,7 +4,7 @@
     @parent
     <script>
         function formSubmit(e) {
-            if(!confirm("Você deseja mesmo excluir este usuário? Você nunca mais o verá por aqui :(")) {
+            if(!confirm("Você deseja mesmo excluir este jogador? Você nunca mais o verá por aqui :(")) {
                 e.preventDefault();
             }
         }
@@ -14,7 +14,11 @@
 @section('content')
 <div class="container">
     <div class="card">
-        <div class="card-header"> Edição de usuário </div>
+        @if(isset($jogador))
+            <div class="card-header"> Edição de jogador </div>
+        @else
+            <div class="card-header"> Criação de jogador </div>
+        @endif
         <div class="card-body">
             <form method="POST" action="/jogadores_form/{{ isset($jogador)? $jogador->id : '' }}" onsubmit="">
                 @csrf
@@ -36,9 +40,11 @@
                         </span>
                     @enderror
                 </div>
-                <button class="btn btn-primary" type="submit"> Salvar alterações </button>
                 @if(isset($jogador))
+                    <button class="btn btn-primary" type="submit"> Salvar alterações </button>
                     <button  name="delete" class="btn btn-danger" type="submit" value="delete" onclick="formSubmit(event)"> Remover jogador </button>
+                @else
+                    <button class="btn btn-primary" type="submit"> Criar jogador </button>
                 @endif
             </form>
         </div>
