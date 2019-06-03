@@ -33,7 +33,16 @@
                             #
                         </th>
                         <th>
-                            Nome
+                            Tempo de partida
+                        </th>
+                        <th>
+                            Tem incremento?
+                        </th>
+                        <th>
+                            Incremento
+                        </th>
+                        <th>
+                            Tipo de partida
                         </th>
                         <th>
                         </th>
@@ -46,7 +55,24 @@
                                 {{ $controle_de_tempo->id }}
                             </td>
                             <td>
-                                {{ $controle_de_tempo->nome }}
+                                {{ $controle_de_tempo->tempo_partida }}
+                            </td>
+                            <td>
+                            @if($controle_de_tempo->tem_incremento)
+                                <span class="oi" data-glyph="check" title="check" aria-hidden="true" style="color: green;"></span>
+                            @else
+                                <span class="oi" data-glyph="x" title="x" aria-hidden="true" style="color: red;"></span>
+                            @endif
+                            </td>
+                            <td>
+                                {{ $controle_de_tempo->incremento }}
+                            </td>
+                            <td>
+                                @foreach($tipos_de_partida as $tipo_de_partida)
+                                    @if($tipo_de_partida->id == $controle_de_tempo->id_tipo_de_partida)
+                                        {{ $tipo_de_partida->nome }}
+                                    @endif
+                                @endforeach
                             </td>
                             <td style="text-align: right;">
                                 <a class="btn btn-primary" href="controles_de_tempo_form/{{ $controle_de_tempo->id }}" style="color: white"> Editar </a>
