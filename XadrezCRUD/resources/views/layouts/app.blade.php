@@ -49,7 +49,7 @@
                                 <a href="/tipos_de_partida" class="nav-link"> Tipos de partida </a>
                             </li>
                             <li>
-                                <a class="nav-link"> Controles de tempo </a>
+                                <a href="/controles_de_tempo" class="nav-link"> Controles de tempo </a>
                             </li>
                             <li>
                                 <a class="nav-link"> Partidas </a>

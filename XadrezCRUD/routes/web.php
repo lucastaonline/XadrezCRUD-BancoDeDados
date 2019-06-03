@@ -30,6 +30,11 @@ Route::get('/tipos_de_partida', 'Tipos_de_partida@index');
 Route::get('/tipos_de_partida_form/{tipo_de_partida?}','Tipos_de_partida@pegarForm');
 Route::post('/tipos_de_partida_form/{tipo_de_partida?}','Tipos_de_partida@enviarForm');
 
+Route::get('/controles_de_tempo', 'Controles_de_tempo@index');
+
+Route::get('/controles_de_tempo_form/{controle_de_tempo?}','Controles_de_tempo@pegarForm');
+Route::post('/controles_de_tempo_form/{controle_de_tempo?}','Controles_de_tempo@enviarForm');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
