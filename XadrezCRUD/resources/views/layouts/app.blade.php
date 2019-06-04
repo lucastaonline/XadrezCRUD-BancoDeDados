@@ -53,7 +53,7 @@
                                 <a href="/controles_de_tempo" class="nav-link"> Controles de tempo </a>
                             </li>
                             <li>
-                                <a class="nav-link"> Partidas </a>
+                                <a href="/partidas" class="nav-link"> Partidas </a>
                             </li>
                             <li>
                                 <a class="nav-link"> Aberturas </a>

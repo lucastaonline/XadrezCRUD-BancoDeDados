@@ -35,6 +35,11 @@ Route::get('/controles_de_tempo', 'Controles_de_tempo@index');
 Route::get('/controles_de_tempo_form/{controle_de_tempo?}','Controles_de_tempo@pegarForm');
 Route::post('/controles_de_tempo_form/{controle_de_tempo?}','Controles_de_tempo@enviarForm');
 
+Route::get('/partidas', 'Partidas@index');
+
+Route::get('/partidas_form/{partida?}','Partidas@pegarForm');
+Route::post('/partidas_form/{partida?}','Partidas@enviarForm');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
