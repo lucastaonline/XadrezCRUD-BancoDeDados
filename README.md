@@ -39,6 +39,8 @@ $ php artisan key:generate
 
 Para rodar a aplicação basta rodar o comando:
 
+```
 $ php artisan serve
+```
 
 E acessar o endereço setada na sua máquina para o laravel (comumente 127.0.0.1:8000).
