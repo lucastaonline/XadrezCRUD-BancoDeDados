@@ -83,7 +83,7 @@
                 @if(isset($partida) && $partidas->contains($partida))
                     <div class="form-group">
                         <label for="id_abertura"> Abertura </label>
-                        <select class="form-control  @error('id_abertura') is-invalid @enderror" id="id_abertura" name="id_abertura">
+                        <select class="form-control @if(isset($errorAbertura)) is-invalid  @endif  @error('id_abertura') is-invalid @enderror" id="id_abertura" name="id_abertura">
                             <option value="-1"> -- Selecione uma abertura --</option>
                             @foreach($aberturas as $abertura)
                                 <option value="{{$abertura->id}}" {{ isset($partida)? (($partida->id_abertura == $abertura->id)? 'selected' : '') : '' }}> {{ $abertura->nome }} </option>
@@ -94,6 +94,11 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
+                        @if(isset($errorAbertura))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errorAbertura }}</strong>
+                            </span>
+                        @endif
                     </div>
                     <div class="form-group">
                     <label for="id_jogador_vencedor"> Jogador vencedor </label>

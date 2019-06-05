@@ -64,10 +64,10 @@ class Controles_de_tempo extends Controller
             if($deletarControle_de_tempo) {
                 if(!$novoControle_de_tempo) {
                     $controle_de_tempo->delete();       
-                    return redirect()->action('Controles_de_tempo@index')->with('status', 'O tipo de partida foi removido!');
+                    return redirect()->action('Controles_de_tempo@index')->with('status', 'O controle de tempo foi removido!');
                 }
                 else {
-                    return redirect()->action('Controles_de_tempo@index')->with('badstatus', 'Não é possível remover um tipo de partida que não existe. Ta mexendo em código fonte né?');
+                    return redirect()->action('Controles_de_tempo@index')->with('badstatus', 'Não é possível remover um controle de tempo que não existe. Ta mexendo em código fonte né?');
                 }
             }
 
@@ -106,7 +106,7 @@ class Controles_de_tempo extends Controller
             }
             $controle_de_tempo->save();
 
-            return redirect()->action('Controles_de_tempo@index')->with('status', $novoControle_de_tempo? 'O tipo de partida foi criado com sucesso!' : 'As alterações foram salvas!');
+            return redirect()->action('Controles_de_tempo@index')->with('status', $novoControle_de_tempo? 'O controle de tempo foi criado com sucesso!' : 'As alterações foram salvas!');
         }
         else {
             return view('sem_permissao');

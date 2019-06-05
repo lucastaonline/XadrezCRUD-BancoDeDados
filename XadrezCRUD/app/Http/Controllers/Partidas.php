@@ -66,8 +66,8 @@ class Partidas extends Controller
         if(Auth::user()->tem_permissao) {
             $novaPartida = !isset($partida);
             $deletarPartida = isset($request->delete);
-            $vencedorSetado = $request->id_jogador_vencedor != -1;
-            $aberturaSetada = $request->id_abertura != -1;
+            $vencedorSetado = (isset($request->id_jogador_vencedor)? $request->id_jogador_vencedor != -1 : false);
+            $aberturaSetada = (isset($request->id_abertura)? $request->id_abertura != -1 : false);
 
             if($deletarPartida) {
                 if(!$novaPartida) {
@@ -128,6 +128,14 @@ class Partidas extends Controller
                     'aberturas' => Abertura::all(),
                     'errors' => $validator->errors()
                 ];
+
+                if($vencedorSetado && new Datetime() < $partida->data_da_partida && !$validator->errors()->has('id_jogador_vencedor')) {
+                    $data['errorVencedor'] = 'Você não pode definir o vencedor antes de a partida acontecer espertinho(a)...';
+                }
+                if($aberturaSetada && new Datetime() < $partida->data_da_partida && !$validator->errors()->has('id_abertura')) {
+                    $data['errorAbertura'] = 'Você não pode definir uma abertura antes de a partida acontecer espertinho(a)...';
+                }
+
                 return view('Partidas.partidas_form', $data);
             }
             else {
@@ -141,6 +149,7 @@ class Partidas extends Controller
                         'aberturas' => Abertura::all(),
                         'errorVencedor' => 'Você não pode definir o vencedor antes de a partida acontecer espertinho(a)...'
                     ];
+
                     return view('Partidas.partidas_form', $data);
                 }
                 else if($aberturaSetada && new Datetime() < $partida->data_da_partida) {
@@ -151,7 +160,7 @@ class Partidas extends Controller
                         'tipos_de_partida' => Tipo_de_partida::all(),
                         'jogadores' => Jogador::all(),
                         'aberturas' => Abertura::all(),
-                        'errorVencedor' => 'Você não pode definir uma abertura antes de a partida acontecer espertinho(a)...'
+                        'errorAbertura' => 'Você não pode definir uma abertura antes de a partida acontecer espertinho(a)...'
                     ];
                     return view('Partidas.partidas_form', $data);
                 }

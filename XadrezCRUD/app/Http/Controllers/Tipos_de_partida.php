@@ -68,11 +68,12 @@ class Tipos_de_partida extends Controller
             }
 
             $validator = Validator::make($request->all(), [
-                'nome' => ['required','max:50']
+                'nome' => ['required','max:50','unique:Tipo_de_partida'],
             ],
             [
                 'required' => 'O campo ":attribute" é obrigatório',
-                'max' => 'O campo ":attribute" deve ter no máximo :max caracteres.'
+                'max' => 'O campo ":attribute" deve ter no máximo :max caracteres.',
+                'unique' => 'Já existe um tipo de partida com esse nome.'
             ]);
 
             if($novoTipo_de_partida) {
