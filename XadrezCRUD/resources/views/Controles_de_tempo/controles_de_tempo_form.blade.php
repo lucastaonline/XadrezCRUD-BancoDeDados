@@ -25,7 +25,7 @@
 @section('content')
 <div class="container">
     <div class="card">
-        @if(isset($controle_de_tempo))
+        @if(isset($controle_de_tempo) && $controles_de_tempo->contains($controle_de_tempo))
             <div class="card-header"> Edição de controle de tempo </div>
         @else
             <div class="card-header"> Criação de controle de tempo </div>
@@ -82,7 +82,7 @@
                         </span>
                     @enderror
                 </div>
-                @if(isset($controle_de_tempo))
+                @if(isset($controle_de_tempo) && $controles_de_tempo->contains($controle_de_tempo))
                     <button class="btn btn-primary" type="submit"> Salvar alterações </button>
                     <button  name="delete" class="btn btn-danger" type="submit" value="delete" onclick="formSubmit(event)"> Remover controle de tempo </button>
                 @else

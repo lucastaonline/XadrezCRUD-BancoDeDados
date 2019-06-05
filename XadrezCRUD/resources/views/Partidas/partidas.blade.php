@@ -64,17 +64,30 @@
                                 {{ $partida->id_jogador_negras }}
                             </td>
                             <td>
-                                {{ $partida->data }}
+                                {{ $partida->data_da_partida->format('d/m/Y H:i:s') }}
                             </td>
                             <td>
-                                {{ $partida->id_jogador_vencedor }}
+                                {{ isset($partida->id_jogador_vencedor)? $partida->id_jogador_vencedor : 'Jogador ainda não definido' }}
                             </td>
                             <td>
-                                @foreach($controles_de_tempo as $controle_de_tempo)
-                                    @if($controle_de_tempo->id == $partida->id_controle_de_tempo)
-                                        {{ $controle_de_tempo->nome }}
-                                    @endif
-                                @endforeach
+                                {{ 
+                                    $controles_de_tempo
+                                    ->firstWhere('id',$partida->id_controle_de_tempo)
+                                    ->tempo_partida
+                                }} min | 
+                                {{ 
+                                    $controles_de_tempo
+                                    ->firstWhere('id',$partida->id_controle_de_tempo)
+                                    ->tem_incremento? $controles_de_tempo
+                                                        ->firstWhere('id',$partida->id_controle_de_tempo)
+                                                        ->incremento . " seg de incremento" : 'Não tem incremento' 
+                                }} |
+                                {{
+                                    $tipos_de_partida
+                                    ->firstWhere('id',$controles_de_tempo->firstWhere('id',$partida->id_controle_de_tempo)
+                                    ->id_tipo_de_partida)
+                                    ->nome 
+                                }}
                             </td>
                             <td style="text-align: right;">
                                 <a class="btn btn-primary" href="partidas_form/{{ $partida->id }}" style="color: white"> Editar </a>

@@ -14,7 +14,7 @@
 @section('content')
 <div class="container">
     <div class="card">
-        @if(isset($jogador))
+        @if(isset($jogador) && $jogadores->contains($jogador))
             <div class="card-header"> Edição de jogador </div>
         @else
             <div class="card-header"> Criação de jogador </div>
@@ -40,7 +40,7 @@
                         </span>
                     @enderror
                 </div>
-                @if(isset($jogador))
+                @if(isset($jogador) && $jogadores->contains($jogador))
                     <button class="btn btn-primary" type="submit"> Salvar alterações </button>
                     <button  name="delete" class="btn btn-danger" type="submit" value="delete" onclick="formSubmit(event)"> Remover jogador </button>
                 @else

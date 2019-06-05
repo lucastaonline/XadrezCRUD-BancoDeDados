@@ -55,7 +55,7 @@
                                 {{ $controle_de_tempo->id }}
                             </td>
                             <td>
-                                {{ $controle_de_tempo->tempo_partida }}
+                                {{ $controle_de_tempo->tempo_partida }} minutos
                             </td>
                             <td>
                             @if($controle_de_tempo->tem_incremento)
@@ -65,7 +65,7 @@
                             @endif
                             </td>
                             <td>
-                                {{ $controle_de_tempo->incremento }}
+                                {{ isset($controle_de_tempo->incremento)? $controle_de_tempo->incremento . ' segundos' : '' }}
                             </td>
                             <td>
                                 @foreach($tipos_de_partida as $tipo_de_partida)

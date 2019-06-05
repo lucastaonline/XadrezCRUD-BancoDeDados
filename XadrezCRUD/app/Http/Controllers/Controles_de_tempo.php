@@ -44,7 +44,8 @@ class Controles_de_tempo extends Controller
 
             $data = [
                 'controle_de_tempo' => $controle_de_tempo,
-                'tipos_de_partida' => Tipo_de_partida::all()
+                'tipos_de_partida' => Tipo_de_partida::all(),
+                'controles_de_tempo' => Controle_de_tempo::all()
             ];
             return view('Controles_de_tempo.controles_de_tempo_form', $data);
         }
@@ -81,7 +82,7 @@ class Controles_de_tempo extends Controller
                 'max' => 'O campo ":attribute" deve ser no máximo :max.',
                 'boolean' => 'O valor passado deve ser um booleano. Está bulindo o código espertinho? Passa nada.',
                 'number' => 'O campo ":attribute" deve ser um número',
-                'exists' => 'O campo ":attribute" deve estar vinculado a um tipo de partida que exista. Pare de mecher no código!',
+                'id_tipo_de_partida.exists' => 'O campo "Tipo de partida" deve estar vinculado a um tipo de partida que exista. Pare de mecher no código!',
                 'integer' => 'O campo ":attribute" deve ser do tipo integer. Para tal, deve ser um número inteiro menor do que 99999999999'
             ]);
 
@@ -98,7 +99,8 @@ class Controles_de_tempo extends Controller
                 $data = [
                     'controle_de_tempo' => $controle_de_tempo,
                     'tipos_de_partida' => Tipo_de_partida::all(),
-                    'errors' => $validator->errors()
+                    'errors' => $validator->errors(),
+                    'controles_de_tempo' => Controle_de_tempo::all()
                 ];
                 return view('Controles_de_tempo.controles_de_tempo_form', $data);
             }

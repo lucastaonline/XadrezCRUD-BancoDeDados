@@ -41,7 +41,8 @@ class Jogadores extends Controller
         if(Auth::user()->tem_permissao) {
 
             $data = [
-                'jogador' => $jogador
+                'jogador' => $jogador,
+                'jogadores' => Jogador::all()
             ];
             return view('Jogadores.jogadores_form', $data);
         }
@@ -86,6 +87,7 @@ class Jogadores extends Controller
             if($validator->fails()) {
                 $data = [
                     'jogador' => $jogador,
+                    'jogadores' => Jogador::all(),
                     'errors' => $validator->errors()
                 ];
                 return view('Jogadores.jogadores_form', $data);

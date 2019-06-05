@@ -14,7 +14,7 @@
 @section('content')
 <div class="container">
     <div class="card">
-        @if(isset($tipo_de_partida))
+        @if(isset($tipo_de_partida) && $tipos_de_partida->contains($tipo_de_partida))
             <div class="card-header"> Edição de tipo de partida </div>
         @else
             <div class="card-header"> Criação de tipo de partida </div>
@@ -31,7 +31,7 @@
                         </span>
                     @enderror
                 </div>
-                @if(isset($tipo_de_partida))
+                @if(isset($tipo_de_partida) && $tipos_de_partida->contains($tipo_de_partida))
                     <button class="btn btn-primary" type="submit"> Salvar alterações </button>
                     <button  name="delete" class="btn btn-danger" type="submit" value="delete" onclick="formSubmit(event)"> Remover tipo de partida </button>
                 @else

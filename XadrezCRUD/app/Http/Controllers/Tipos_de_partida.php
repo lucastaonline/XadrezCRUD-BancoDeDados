@@ -41,7 +41,8 @@ class Tipos_de_partida extends Controller
         if(Auth::user()->tem_permissao) {
 
             $data = [
-                'tipo_de_partida' => $tipo_de_partida
+                'tipo_de_partida' => $tipo_de_partida,
+                'tipos_de_partida' => Tipo_de_partida::all()
             ];
             return view('Tipos_de_partida.tipos_de_partida_form', $data);
         }
@@ -83,9 +84,10 @@ class Tipos_de_partida extends Controller
             if($validator->fails()) {
                 $data = [
                     'tipo_de_partida' => $tipo_de_partida,
-                    'errors' => $validator->errors()
+                    'errors' => $validator->errors(),
+                    'tipos_de_partida' => Tipo_de_partida::all()
                 ];
-                return view('Tipo_de_partida.tipos_de_partida_form', $data);
+                return view('Tipos_de_partida.tipos_de_partida_form', $data);
             }
 
             $tipo_de_partida->save();
