@@ -35,7 +35,8 @@ class Partidas extends Controller
             $data = [
                 'partidas' => Partida::all(),
                 'controles_de_tempo' => Controle_de_tempo::all(),
-                'tipos_de_partida' => Tipo_de_partida::all()
+                'tipos_de_partida' => Tipo_de_partida::all(),
+                'jogadores' => Jogador::all()
             ];
             return view('Partidas.partidas', $data);
         }

@@ -58,10 +58,10 @@
                                 {{ $partida->id }}
                             </td>
                             <td>
-                                {{ $partida->id_jogador_brancas }}
+                                {{ $jogadores->firstWhere('id',$partida->id_jogador_brancas)->nome }}
                             </td>
                             <td>
-                                {{ $partida->id_jogador_negras }}
+                                {{ $jogadores->firstWhere('id',$partida->id_jogador_negras)->nome }}
                             </td>
                             <td>
                                 {{ $partida->data_da_partida->format('d/m/Y H:i:s') }}
