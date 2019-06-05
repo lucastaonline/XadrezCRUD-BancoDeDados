@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Controle_de_tempo;
@@ -9,7 +10,7 @@ use App\Partida;
 use App\Jogador;
 use App\Tipo_de_partida;
 use App\Abertura;
-use Illuminate\Support\Facades\Validator;
+
 use DateTime;
 
 class Partidas extends Controller

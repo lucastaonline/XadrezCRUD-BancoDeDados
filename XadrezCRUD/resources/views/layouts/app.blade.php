@@ -58,13 +58,13 @@
                                 <a href="/partidas" class="nav-link"> Partidas </a>
                             </li>
                             <li>
-                                <a class="nav-link"> Aberturas </a>
+                                <a href="/aberturas" class="nav-link"> Aberturas </a>
                             </li>
                             <li>
-                                <a class="nav-link"> Momentos partida </a>
+                                <a href="/momentos_partida" class="nav-link"> Momentos partida </a>
                             </li>
                             <li>
-                                <a class="nav-link"> Avaliações de lances </a>
+                                <a href="/avaliacoes_lance" class="nav-link"> Avaliações de lances </a>
                             </li>
                             <li>
                                 <a class="nav-link"> Lances </a>

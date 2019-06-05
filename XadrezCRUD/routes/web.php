@@ -40,6 +40,21 @@ Route::get('/partidas', 'Partidas@index');
 Route::get('/partidas_form/{partida?}','Partidas@pegarForm');
 Route::post('/partidas_form/{partida?}','Partidas@enviarForm');
 
+Route::get('/aberturas', 'Aberturas@index');
+
+Route::get('/aberturas_form/{abertura?}','Aberturas@pegarForm');
+Route::post('/aberturas_form/{abertura?}','Aberturas@enviarForm');
+
+Route::get('/momentos_partida', 'Momentos_partida@index');
+
+Route::get('/momentos_partida_form/{momento_partida?}','Momentos_partida@pegarForm');
+Route::post('/momentos_partida_form/{momento_partida?}','Momentos_partida@enviarForm');
+
+Route::get('/avaliacoes_lance', 'Avaliacoes_lance@index');
+
+Route::get('/avaliacoes_lance_form/{avaliacao_lance?}','Avaliacoes_lance@pegarForm');
+Route::post('/avaliacoes_lance_form/{avaliacao_lance?}','Avaliacoes_lance@enviarForm');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

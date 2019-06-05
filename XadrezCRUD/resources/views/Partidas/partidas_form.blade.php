@@ -4,7 +4,7 @@
     @parent
     <script>
         function formSubmit(e) {
-            if(!confirm("Você deseja mesmo excluir esta partida? Você nunca mais o verá por aqui :(")) {
+            if(!confirm("Você deseja mesmo excluir esta partida? Você nunca mais irá vê-la por aqui :(")) {
                 e.preventDefault();
             }
         }
