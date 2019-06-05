@@ -26,7 +26,7 @@
                 <div class="form-group">
                     <label for="id_jogador_brancas"> Jogador das peças brancas </label>
                     <select class="form-control  @error('id_jogador_brancas') is-invalid @enderror" id="id_jogador_brancas" name="id_jogador_brancas">
-                        <option> -- Selecione um tipo de partida --</option>
+                        <option> -- Selecione um jogador --</option>
                         @foreach($jogadores as $jogador)
                             <option value="{{$jogador->id}}" {{ isset($partida)? (($partida->id_jogador_brancas == $jogador->id)? 'selected' : '') : '' }}> {{ $jogador->nome }} </option>
                         @endforeach
@@ -40,7 +40,7 @@
                 <div class="form-group">
                     <label for="id_jogador_negras"> Jogador das peças negras </label>
                     <select class="form-control  @error('id_jogador_negras') is-invalid @enderror" id="id_jogador_negras" name="id_jogador_negras">
-                        <option> -- Selecione um tipo de partida --</option>
+                        <option> -- Selecione um jogador --</option>
                         @foreach($jogadores as $jogador)
                             <option value="{{$jogador->id}}" {{ isset($partida)? (($partida->id_jogador_negras == $jogador->id)? 'selected' : '') : '' }}> {{ $jogador->nome }} </option>
                         @endforeach
@@ -53,8 +53,28 @@
                 </div>
                 <div class="form-group">
                     <label for="data_da_partida"> Data da partida </label>
-                    <input name="data_da_partida" class="form-control @error('data_da_partida') is-invalid @enderror" value="" type="datetime-local"/>
+                    <input name="data_da_partida" class="form-control @error('data_da_partida') is-invalid @enderror" value="{{ isset($partida)? $partida->data_da_partida : '' }}" type="datetime-local"/>
                     @error('data_da_partida')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="id_controle_de_tempo">  Controle de tempo da partida </label>
+                    <select class="form-control  @error('id_controle_de_tempo') is-invalid @enderror" id="id_controle_de_tempo" name="id_controle_de_tempo">
+                        <option> -- Selecione um controle de tempo --</option>
+                        @foreach($controles_de_tempo as $controle_de_tempo)
+                            <option value="{{$controle_de_tempo->id}}" 
+                            {{ isset($partida)? (($partida->id_controle_de_tempo == $controle_de_tempo->id)?
+                             'selected' : '') : '' }}> 
+                                {{ $controle_de_tempo->tempo_partida }} min | 
+                                {{ $controle_de_tempo->tem_incremento? $controle_de_tempo->incremento . " seg de incremento" : '' }} |
+                                {{ App\Tipo_de_partida::find($controle_de_tempo->id_tipo_de_partida )->nome $tipos_de_partida }}
+                             </option>
+                        @endforeach
+                    </select>
+                    @error('id_controle_de_tempo')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

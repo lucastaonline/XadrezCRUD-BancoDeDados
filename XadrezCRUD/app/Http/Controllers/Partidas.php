@@ -57,7 +57,7 @@ class Partidas extends Controller
 
     public function enviarForm(Request $request,Controle_de_tempo $partida = null) {
         if(Auth::user()->tem_permissao) {
-
+            dd($request->all());
             $request->tem_incremento = ($request->tem_incremento == "true"? true : false);
             $novaPartida = !isset($partida);
             $deletarPartida = isset($request->delete);
