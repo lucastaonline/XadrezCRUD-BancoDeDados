@@ -23,9 +23,41 @@
             <form method="POST" action="/lances_form/{{ isset($lance)? $lance->id : '' }}" onsubmit="">
                 @csrf
                 <div class="form-group">
+                    <label for="id_partida"> Partida do lance </label>
+                    <select class="form-control  @if(isset($errorPartida) || $errors->has('id_partida')) is-invalid @endif" id="id_partida" name="id_partida">
+                        <option value=""> -- Selecione uma partida --</option>
+                        @foreach($partidas as $partida)
+                            <option value="{{$partida->id}}" {{
+                                                                isset($lance)? 
+                                                                (($lance->id_partida == $partida->id)? 'selected' : '') : '' 
+                                                            }}> 
+                                    {{
+                                        $jogadores->firstWhere('id',$partida->id_jogador_brancas)->nome
+                                    }} vs 
+                                    {{
+                                        $jogadores->firstWhere('id',$partida->id_jogador_negras)->nome
+                                    }} |
+                                    {{
+                                        $partida->data_da_partida
+                                    }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('id_partida')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    @if(isset($errorPartida))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errorPartida }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="form-group">
                     <label for="id_jogador"> Jogador do lance </label>
-                    <select class="form-control  @error('id_jogador') is-invalid @enderror" id="id_jogador" name="id_jogador">
-                        <option> -- Selecione um jogador --</option>
+                    <select class="form-control  @if(isset($errorJogador) || $errors->has('id_jogador')) is-invalid @endif" id="id_jogador" name="id_jogador">
+                        <option value=""> -- Selecione um jogador --</option>
                         @foreach($jogadores as $jogador)
                             <option value="{{$jogador->id}}" {{ isset($lance)? (($lance->id_jogador == $jogador->id)? 'selected' : '') : '' }}> {{ $jogador->nome }} </option>
                         @endforeach
@@ -35,24 +67,15 @@
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                </div>
-                <div class="form-group">
-                    <label for="id_partida"> Partida do lance </label>
-                    <select class="form-control  @error('id_partida') is-invalid @enderror" id="id_partida" name="id_partida">
-                        <option> -- Selecione uma partida --</option>
-                        @foreach($partidas as $partida)
-                            <option value="{{$partida->id}}" {{ isset($lance)? (($lance->id_partida == $partida->id)? 'selected' : '') : '' }}> {{ $partida->id }} </option>
-                        @endforeach
-                    </select>
-                    @error('id_partida')
+                    @if(isset($errorJogador))
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
+                            <strong>{{ $errorJogador }}</strong>
                         </span>
-                    @enderror
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="numero_lance"> Número do lance </label>
-                    <input name="numero_lance" value="{{ isset($lance)? $lance->numero_lance : '' }}" type="number" class="form-control @error('numero_lance') is-invalid @enderror" id="numero_lance" aria-describedby="nameHelp" placeholder="Digite o nome do lance">
+                    <input name="numero_lance" value="{{ isset($lance)? $lance->numero_lance : '' }}" type="number" class="form-control @error('numero_lance') is-invalid @enderror" id="numero_lance" aria-describedby="nameHelp" placeholder="Digite o número do lance">
                     @error('numero_lance')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -62,7 +85,7 @@
                 <div class="form-group">
                     <label for="id_avaliacao_lance"> Avaliação do lance </label>
                     <select class="form-control  @error('id_avaliacao_lance') is-invalid @enderror" id="id_avaliacao_lance" name="id_avaliacao_lance">
-                        <option> -- Selecione uma avaliação --</option>
+                        <option value=""> -- Selecione uma avaliação --</option>
                         @foreach($avaliacoes_lance as $avaliacao_lance)
                             <option value="{{$avaliacao_lance->id}}" {{ isset($lance)? (($lance->id_avaliacao_lance == $avaliacao_lance->id)? 'selected' : '') : '' }}> {{ $avaliacao_lance->nome }} </option>
                         @endforeach
@@ -74,9 +97,18 @@
                     @enderror
                 </div>
                 <div class="form-group">
+                    <label for="nivel_avaliacao"> Nível de avaliação do lance </label>
+                    <input name="nivel_avaliacao" value="{{ isset($lance)? $lance->nivel_avaliacao : '' }}" type="number" class="form-control @error('nivel_avaliacao') is-invalid @enderror" id="nivel_avaliacao" aria-describedby="nivel_avaliacaoHelp" placeholder="Digite o nível da avaliação do lance">
+                    @error('nivel_avaliacao')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="form-group">
                     <label for="id_momento_partida"> Momento de partida do lance </label>
                     <select class="form-control  @error('id_momento_partida') is-invalid @enderror" id="id_momento_partida" name="id_momento_partida">
-                        <option> -- Selecione um momento de partida--</option>
+                        <option value=""> -- Selecione um momento de partida--</option>
                         @foreach($momentos_partida as $momento_partida)
                             <option value="{{$momento_partida->id}}" {{ isset($lance)? (($lance->id_momento_partida == $momento_partida->id)? 'selected' : '') : '' }}> {{ $momento_partida->nome }} </option>
                         @endforeach

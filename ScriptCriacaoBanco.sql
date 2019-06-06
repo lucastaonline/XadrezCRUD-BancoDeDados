@@ -61,7 +61,7 @@ CREATE TABLE Lance (
     id_partida INTEGER,
     numero_lance INTEGER,
     id_avaliacao_lance INTEGER,
-    mudanca_avaliacao INTEGER,
+    nivel_avaliacao INTEGER,
     id_momento_partida INTEGER,
     PRIMARY KEY (id),
     FOREIGN KEY (id_jogador) REFERENCES Jogador(id),

@@ -72,9 +72,9 @@ class Controles_de_tempo extends Controller
             }
 
             $validator = Validator::make($request->all(), [
-                'tempo_partida' => ['required','integer','max:999999999'],
+                'tempo_partida' => ['required','integer','max:2147483647'],
                 'tem_incremento' => ['required',],
-                'incremento' => [($request->tem_incremento? 'integer' : ''),($request->tem_incremento? 'required' : ''),'max:999999999'],
+                'incremento' => [($request->tem_incremento? 'integer' : ''),($request->tem_incremento? 'required' : ''),'max:2147483647'],
                 'id_tipo_de_partida' => ['required','exists:Tipo_de_partida,id'],
             ],
             [
@@ -83,7 +83,7 @@ class Controles_de_tempo extends Controller
                 'boolean' => 'O valor passado deve ser um booleano. Está bulindo o código espertinho? Passa nada.',
                 'number' => 'O campo ":attribute" deve ser um número',
                 'id_tipo_de_partida.exists' => 'O campo "Tipo de partida" deve estar vinculado a um tipo de partida que exista. Pare de mecher no código!',
-                'integer' => 'O campo ":attribute" deve ser do tipo integer. Para tal, deve ser um número inteiro menor do que 99999999999'
+                'integer' => 'O campo deve ser do tipo integer. Para tal, deve ser um número inteiro menor do que 2147483647'
             ]);
 
             if($novoControle_de_tempo) {

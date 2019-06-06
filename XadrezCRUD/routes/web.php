@@ -60,6 +60,11 @@ Route::get('/lances', 'Lances@index');
 Route::get('/lances_form/{lance?}','Lances@pegarForm');
 Route::post('/lances_form/{lance?}','Lances@enviarForm');
 
+Route::get('/variacoes_rating', 'Variacoes_rating@index');
+
+Route::get('/variacoes_rating_form/{variacao_rating?}','Variacoes_rating@pegarForm');
+Route::post('/variacoes_rating_form/{variacao_rating?}','Variacoes_rating@enviarForm');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

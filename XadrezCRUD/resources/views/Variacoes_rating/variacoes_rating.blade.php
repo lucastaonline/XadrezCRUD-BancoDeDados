@@ -17,12 +17,12 @@
         </div>
     @endif
     <div class="container">
-        <a href="/lances_form" class="btn btn-primary" style="color: white; margin-bottom: 20px;"> Criar lance </a>
-        @if(count($lances) == 0)
+        <a href="/variacoes_rating_form" class="btn btn-primary" style="color: white; margin-bottom: 20px;"> Criar variação de rating </a>
+        @if(count($variacoes_rating) == 0)
             <div class="card">
                 <div class="card-header"> Ninguém fez bagunça aqui! </div>
                 <div class="card-body">
-                    Não temos nenhum registro de lances no banco. (ainda)
+                    Não temos nenhum registro de variações de rating no banco. (ainda)
                 </div>
             </div>
         @else
@@ -39,55 +39,37 @@
                             Jogador
                         </th>
                         <th>
-                            Número
-                        </th>
-                        <th>
-                            Avaliação do lance
-                        </th>
-                        <th>
-                            Nível de avaliação do lance
-                        </th>
-                        <th>
-                            Momento da partida
+                            Variação
                         </th>
                         <th>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($lances as $lance)
+                    @foreach ($variacoes_rating as $variacao_rating)
                         <tr>
                             <td>
-                                {{ $lance->id }}
+                                {{ $variacao_rating->id }}
                             </td>
                             <td>
                                 {{
-                                    $jogadores->firstWhere('id',$partidas->firstWhere('id',$lance->id_partida)->id_jogador_brancas)->nome
+                                    $jogadores->firstWhere('id',$partidas->firstWhere('id',$variacao_rating->id_partida)->id_jogador_brancas)->nome
                                 }} vs 
                                 {{
-                                    $jogadores->firstWhere('id',$partidas->firstWhere('id',$lance->id_partida)->id_jogador_negras)->nome
+                                    $jogadores->firstWhere('id',$partidas->firstWhere('id',$variacao_rating->id_partida)->id_jogador_negras)->nome
                                 }} |
                                 {{
-                                    $partidas->firstWhere('id',$lance->id_partida)->data_da_partida
+                                    $partidas->firstWhere('id',$variacao_rating->id_partida)->data_da_partida
                                 }}
                             </td>
                             <td>
-                                {{ $jogadores->firstWhere('id',$lance->id_jogador)->nome }}
+                                {{ $jogadores->firstWhere('id',$variacao_rating->id_jogador)->nome }}
                             </td>
                             <td>
-                                {{ $lance->numero_lance }}
-                            </td>
-                            <td>
-                                {{ $avaliacoes_lance->firstWhere('id',$lance->id_avaliacao_lance)->nome }}
-                            </td>
-                            <td>
-                                {{ $lance->nivel_avaliacao }}
-                            </td>
-                            <td>
-                                {{ $momentos_partida->firstWhere('id',$lance->id_momento_partida)->nome }}
+                                {{ $variacao_rating->variacao }}
                             </td>
                             <td style="text-align: right;">
-                                <a class="btn btn-primary" href="lances_form/{{ $lance->id }}" style="color: white"> Editar </a>
+                                <a class="btn btn-primary" href="variacoes_rating_form/{{ $variacao_rating->id }}" style="color: white"> Editar </a>
                             </td>
                         </tr>
                     @endforeach

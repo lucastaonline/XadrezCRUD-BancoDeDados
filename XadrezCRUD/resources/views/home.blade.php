@@ -8,7 +8,7 @@
                 <div class="card-header">Bem-vindo!</div>
 
                 <div class="card-body">
-                    Olá, este é nosso CRUD. Clique em uma sessão e começe a bagunçar nosso banco, afinal, alguém te deu essa permissão =D
+                    Olá, este é nosso CRUD. Clique em uma seção e começe a bagunçar nosso banco, afinal, alguém te deu essa permissão =D
                 </div>
             </div>
         </div>

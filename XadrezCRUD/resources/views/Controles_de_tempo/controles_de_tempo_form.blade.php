@@ -71,7 +71,7 @@
                 <div class="form-group">
                     <label for="id_tipo_de_partida"> Tipo de partida </label>
                     <select class="form-control  @error('id_tipo_de_partida') is-invalid @enderror" id="id_tipo_de_partida" name="id_tipo_de_partida">
-                        <option> -- Selecione um tipo de partida --</option>
+                        <option value=""> -- Selecione um tipo de partida --</option>
                         @foreach($tipos_de_partida as $tipo_de_partida)
                             <option value="{{$tipo_de_partida->id}}" {{ isset($controle_de_tempo)? (($controle_de_tempo->id_tipo_de_partida == $tipo_de_partida->id)? 'selected' : '') : '' }}> {{ $tipo_de_partida->nome }} </option>
                         @endforeach

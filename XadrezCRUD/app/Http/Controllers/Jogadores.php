@@ -69,12 +69,13 @@ class Jogadores extends Controller
 
             $validator = Validator::make($request->all(), [
                 'nome' => ['required','max:50'],
-                'rating' => ['required','numeric']
+                'rating' => ['required','numeric','max:2147483647','min:0']
             ],
             [
                 'required' => 'O campo ":attribute" é obrigatório',
                 'numeric' => 'O campo ":attribute" deve ser um número.',
-                'max' => 'O campo ":attribute" deve ter no máximo :max caracteres.'
+                'max' => 'O campo ":attribute" deve ter no máximo :max caracteres.',
+                'min' => 'O campo deve ser maior do que 0.'
             ]);
 
             if($novoJogador) {

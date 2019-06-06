@@ -67,8 +67,8 @@ class Partidas extends Controller
         if(Auth::user()->tem_permissao) {
             $novaPartida = !isset($partida);
             $deletarPartida = isset($request->delete);
-            $vencedorSetado = (isset($request->id_jogador_vencedor)? $request->id_jogador_vencedor != -1 : false);
-            $aberturaSetada = (isset($request->id_abertura)? $request->id_abertura != -1 : false);
+            $vencedorSetado = isset($request->id_jogador_vencedor);
+            $aberturaSetada = isset($request->id_abertura);
 
             if($deletarPartida) {
                 if(!$novaPartida) {
@@ -130,10 +130,10 @@ class Partidas extends Controller
                     'errors' => $validator->errors()
                 ];
 
-                if($vencedorSetado && new Datetime() < $partida->data_da_partida && !$validator->errors()->has('id_jogador_vencedor')) {
+                if(!$validator->errors()->has('id_jogador_vencedor') && $vencedorSetado && new Datetime() < $partida->data_da_partida) {
                     $data['errorVencedor'] = 'Você não pode definir o vencedor antes de a partida acontecer espertinho(a)...';
                 }
-                if($aberturaSetada && new Datetime() < $partida->data_da_partida && !$validator->errors()->has('id_abertura')) {
+                if(!$validator->errors()->has('id_abertura') && $aberturaSetada && new Datetime() < $partida->data_da_partida) {
                     $data['errorAbertura'] = 'Você não pode definir uma abertura antes de a partida acontecer espertinho(a)...';
                 }
 

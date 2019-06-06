@@ -11,6 +11,8 @@ use App\Lance;
 use App\Avaliacao_lance;
 use App\Jogador;
 
+use DateTime;
+
 class Lances extends Controller
 {
     /**
@@ -80,12 +82,12 @@ class Lances extends Controller
             }
 
             $validator = Validator::make($request->all(), [
-                'id_jogador' => ['required','integer','exists:Jogador'],
-                'id_partida' => ['required','integer','exists:Partida'],
-                'id_momento_partida' => ['required','integer','exists:Momento_partida'],
-                'id_avaliacao_lance' => ['required','integer','exists:Avaliacao_lance'],
-                'numero_lance' => ['required','integer'],
-                'mudanca_avaliacao' => ['']
+                'id_jogador' => ['required','integer','exists:Jogador,id'],
+                'id_partida' => ['required','integer','exists:Partida,id'],
+                'id_momento_partida' => ['required','integer','exists:Momento_partida,id'],
+                'id_avaliacao_lance' => ['required','integer','exists:Avaliacao_lance,id'],
+                'numero_lance' => ['required','integer','max:2147483647','min:0'],
+                'nivel_avaliacao' => ['required','integer','max:2147483647']
             ],
             [
                 'required' => 'O campo ":attribute" é obrigatório',
@@ -94,6 +96,8 @@ class Lances extends Controller
                 'id_partida.exists' => 'A partida selecionada deve existir.',
                 'id_momento_partida.exists' => 'O momento de partida selecionado deve existir.',
                 'id_avaliacao_lance.exists' => 'A avaliação de lance selecionada deve existir.',
+                'max' => 'O campo ":attribute" deve ser do tipo integer. Para tal, deve ser um número inteiro menor do que 2147483647',
+                'min' => 'O campo não deve ser menor do que 0.'
             ]);
 
             if($novoLance) {
@@ -104,11 +108,11 @@ class Lances extends Controller
             $lance->id_partida = $request->id_partida;
             $lance->id_momento_partida = $request->id_momento_partida;
             $lance->id_avaliacao_lance = $request->id_avaliacao_lance;
-            $lance->numero_partida = $request->numero_partida;
-            if(isset($request->mudanca_avaliacao)) {
-                $lance->mudanca_avaliacao = $request->mudanca_avaliacao;
-            }
+            $lance->numero_lance = $request->numero_lance;
+            $lance->nivel_avaliacao = $request->nivel_avaliacao;
             
+            $partidaDoLance = Partida::all()->firstWhere('id',$lance->id_partida);
+
             if($validator->fails()) {
                 $data = [
                     'lance' => $lance,
@@ -119,7 +123,45 @@ class Lances extends Controller
                     'partidas' => Partida::all(),
                     'avaliacoes_lance' => Avaliacao_lance::all()
                 ];
+
+                if(!$validator->errors()->has('id_jogador') && $lance->id_jogador != $partidaDoLance->id_jogador_brancas && $lance->id_jogador != $partidaDoLance->id_jogador_negras) {
+                    $data['errorJogador'] = 'Você deve escolher um jogador que participe da partida né gênio...';
+                }
+                if (!$validator->errors()->has('id_partida') && new Datetime() < $partidaDoLance->data_da_partida) {
+                    $data['errorPartida'] = 'Você não pode definir um lance antes de a partida acontecer espertinho(a)...';
+                }
+
                 return view('Lances.lances_form', $data);
+            }
+            else {
+                
+                if($lance->id_jogador != $partidaDoLance->id_jogador_brancas && $lance->id_jogador != $partidaDoLance->id_jogador_negras) {
+                    $data = [
+                        'lance' => $lance,
+                        'lances' => Lance::all(),
+                        'momentos_partida' => Momento_partida::all(),
+                        'jogadores' =>  Jogador::all(),
+                        'partidas' => Partida::all(),
+                        'avaliacoes_lance' => Avaliacao_lance::all(),
+                        'errorJogador' => 'Você deve escolher um jogador que participe da partida né gênio...'
+                    ];
+                    if(new Datetime() < $partidaDoLance->data_da_partida) {
+                        $data['errorPartida'] = 'Você não pode definir um lance antes de a partida acontecer espertinho(a)...';
+                    }
+                    return view('Lances.lances_form', $data);
+                }
+                else if(new Datetime() < $partidaDoLance->data_da_partida) {
+                    $data = [
+                        'lance' => $lance,
+                        'lances' => Lance::all(),
+                        'momentos_partida' => Momento_partida::all(),
+                        'jogadores' =>  Jogador::all(),
+                        'partidas' => Partida::all(),
+                        'avaliacoes_lance' => Avaliacao_lance::all(),
+                        'errorPartida' => 'Você não pode definir um lance antes de a partida acontecer espertinho(a)...'
+                    ];
+                    return view('Lances.lances_form', $data);
+                }
             }
 
             $lance->save();

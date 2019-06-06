@@ -26,7 +26,7 @@
                 <div class="form-group">
                     <label for="id_jogador_brancas"> Jogador das peças brancas </label>
                     <select class="form-control  @error('id_jogador_brancas') is-invalid @enderror" id="id_jogador_brancas" name="id_jogador_brancas">
-                        <option> -- Selecione um jogador --</option>
+                        <option value=""> -- Selecione um jogador --</option>
                         @foreach($jogadores as $jogador)
                             <option value="{{$jogador->id}}" {{ isset($partida)? (($partida->id_jogador_brancas == $jogador->id)? 'selected' : '') : '' }}> {{ $jogador->nome }} </option>
                         @endforeach
@@ -40,7 +40,7 @@
                 <div class="form-group">
                     <label for="id_jogador_negras"> Jogador das peças negras </label>
                     <select class="form-control  @error('id_jogador_negras') is-invalid @enderror" id="id_jogador_negras" name="id_jogador_negras">
-                        <option> -- Selecione um jogador --</option>
+                        <option value=""> -- Selecione um jogador --</option>
                         @foreach($jogadores as $jogador)
                             <option value="{{$jogador->id}}" {{ isset($partida)? (($partida->id_jogador_negras == $jogador->id)? 'selected' : '') : '' }}> {{ $jogador->nome }} </option>
                         @endforeach
@@ -63,7 +63,7 @@
                 <div class="form-group">
                     <label for="id_controle_de_tempo">  Controle de tempo da partida </label>
                     <select class="form-control  @error('id_controle_de_tempo') is-invalid @enderror" id="id_controle_de_tempo" name="id_controle_de_tempo">
-                        <option> -- Selecione um controle de tempo --</option>
+                        <option value=""> -- Selecione um controle de tempo --</option>
                         @foreach($controles_de_tempo as $controle_de_tempo)
                             <option value="{{$controle_de_tempo->id}}" 
                             {{ isset($partida)? (($partida->id_controle_de_tempo == $controle_de_tempo->id)?

@@ -70,7 +70,7 @@
                                 <a href="/lances" class="nav-link"> Lances </a>
                             </li>
                             <li>
-                                <a class="nav-link"> Variações de rating </a>
+                                <a href="/variacoes_rating" class="nav-link"> Variações de rating </a>
                             </li>
                         @endguest
                             
