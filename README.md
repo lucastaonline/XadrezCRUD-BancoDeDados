@@ -8,7 +8,7 @@ Esta parte de meu trabalho de banco de dados consiste em desenvolver um sistema 
 
 ## Requisitos
 
-- Você deve ter laravel instalado na sua máquina, logo, deve ter o composer também.
+- Você deve ter (obviamente) laravel instalado na sua máquina, logo, deve ter o composer também.
 
 ## Criando o banco de dados
 
