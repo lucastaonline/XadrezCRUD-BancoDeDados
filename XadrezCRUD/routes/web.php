@@ -55,6 +55,11 @@ Route::get('/avaliacoes_lance', 'Avaliacoes_lance@index');
 Route::get('/avaliacoes_lance_form/{avaliacao_lance?}','Avaliacoes_lance@pegarForm');
 Route::post('/avaliacoes_lance_form/{avaliacao_lance?}','Avaliacoes_lance@enviarForm');
 
+Route::get('/lances', 'Lances@index');
+
+Route::get('/lances_form/{lance?}','Lances@pegarForm');
+Route::post('/lances_form/{lance?}','Lances@enviarForm');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

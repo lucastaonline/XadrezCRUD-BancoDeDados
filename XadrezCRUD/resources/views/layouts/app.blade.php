@@ -67,7 +67,7 @@
                                 <a href="/avaliacoes_lance" class="nav-link"> Avaliações de lances </a>
                             </li>
                             <li>
-                                <a class="nav-link"> Lances </a>
+                                <a href="/lances" class="nav-link"> Lances </a>
                             </li>
                             <li>
                                 <a class="nav-link"> Variações de rating </a>
