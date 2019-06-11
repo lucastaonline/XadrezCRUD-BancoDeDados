@@ -59,6 +59,7 @@ CREATE TABLE Lance (
 	id INTEGER AUTO_INCREMENT,
     id_jogador INTEGER,
     id_partida INTEGER,
+    nome VARCHAR(20),
     numero_lance INTEGER,
     id_avaliacao_lance INTEGER,
     nivel_avaliacao INTEGER,

@@ -38,7 +38,7 @@
                                         $jogadores->firstWhere('id',$partida->id_jogador_negras)->nome
                                     }} |
                                     {{
-                                        $partida->data_da_partida
+                                        $partida->data_da_partida->format("d/m/Y H:i:s")
                                     }}
                             </option>
                         @endforeach
@@ -72,6 +72,15 @@
                             <strong>{{ $errorJogador }}</strong>
                         </span>
                     @endif
+                </div>
+                <div class="form-group">
+                    <label for="nome"> Nome do Lance </label>
+                    <input name="nome" value="{{ isset($lance)? $lance->nome : '' }}" type="text" class="form-control @error('nome') is-invalid @enderror" id="nome" aria-describedby="nameHelp" placeholder="Digite o nome do lance">
+                    @error('nome')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="numero_lance"> Número do lance </label>

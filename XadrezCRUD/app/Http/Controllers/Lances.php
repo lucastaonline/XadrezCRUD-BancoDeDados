@@ -87,7 +87,8 @@ class Lances extends Controller
                 'id_momento_partida' => ['required','integer','exists:Momento_partida,id'],
                 'id_avaliacao_lance' => ['required','integer','exists:Avaliacao_lance,id'],
                 'numero_lance' => ['required','integer','max:2147483647','min:0'],
-                'nivel_avaliacao' => ['required','integer','max:2147483647']
+                'nivel_avaliacao' => ['required','integer','max:2147483647'],
+                'nome' => ['required','max:20',]
             ],
             [
                 'required' => 'O campo ":attribute" é obrigatório',
@@ -96,7 +97,8 @@ class Lances extends Controller
                 'id_partida.exists' => 'A partida selecionada deve existir.',
                 'id_momento_partida.exists' => 'O momento de partida selecionado deve existir.',
                 'id_avaliacao_lance.exists' => 'A avaliação de lance selecionada deve existir.',
-                'max' => 'O campo ":attribute" deve ser do tipo integer. Para tal, deve ser um número inteiro menor do que 2147483647',
+                'numero_lance.max' => 'O campo ":attribute" deve ser do tipo integer. Para tal, deve ser um número inteiro menor do que 2147483647',
+                'nome.max' => 'O nome do campo deve ter no máximo 20 caracteres.',
                 'min' => 'O campo não deve ser menor do que 0.'
             ]);
 
@@ -110,6 +112,7 @@ class Lances extends Controller
             $lance->id_avaliacao_lance = $request->id_avaliacao_lance;
             $lance->numero_lance = $request->numero_lance;
             $lance->nivel_avaliacao = $request->nivel_avaliacao;
+            $lance->nome = $request->nome;
             
             $partidaDoLance = Partida::all()->firstWhere('id',$lance->id_partida);
 

@@ -39,6 +39,9 @@
                             Jogador
                         </th>
                         <th>
+                            Nome
+                        </th>
+                        <th>
                             Número
                         </th>
                         <th>
@@ -68,11 +71,14 @@
                                     $jogadores->firstWhere('id',$partidas->firstWhere('id',$lance->id_partida)->id_jogador_negras)->nome
                                 }} |
                                 {{
-                                    $partidas->firstWhere('id',$lance->id_partida)->data_da_partida
+                                    $partidas->firstWhere('id',$lance->id_partida)->data_da_partida->format("d/m/Y H:i:s")
                                 }}
                             </td>
                             <td>
                                 {{ $jogadores->firstWhere('id',$lance->id_jogador)->nome }}
+                            </td>
+                            <td>
+                                {{ $lance->nome }}
                             </td>
                             <td>
                                 {{ $lance->numero_lance }}
